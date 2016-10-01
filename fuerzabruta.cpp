@@ -6,7 +6,7 @@ class BF{
 protected :
 string text;
 //string pattern;
-//std::vector<int> ocurrencias;
+//std::vector<int> ocurrence;
 
 public:
 	BF( string text);
@@ -23,9 +23,9 @@ BF::BF( string text){
 	}
 
  vector<int> BF::findpattern(string pattern){
-		std::vector<int> ocurrencias;
+		std::vector<int> ocurrence;
 
-		if(text.length() || pattern.length()) return ocurrencias;
+		if(text.length() || pattern.length()) return ocurrence;
 
 		int text_size=text.length();
 		int pattern_size = pattern.length();
@@ -37,7 +37,7 @@ BF::BF( string text){
 	    	for (int j = 0; i < pattern_size; ++j)
 	    	{
 	    		if(text[i+j] != pattern[j]) break;
-	    		else if(j==pattern_size-1) ocurrencias.push_back(i);
+	    		else if(j==pattern_size-1) ocurrence.push_back(i);
 	    	}
 
 	    }
