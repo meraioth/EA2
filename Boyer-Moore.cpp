@@ -5,15 +5,34 @@
 #include <iostream>
 #include <algorithm>
 #include <vector> 
+#include <stdio.h>
 
 # define ASCII 256
 
 using namespace std;
+
+
+class BM {
+
+protected :
+string txt;
+
+public:
+  BM( string text);
+  vector <int> badCharHeuristic( string str);
+  vector<int> search(string pattern);
+
+
+};
+
+BM::BM(string text){
+    txt=text;
+}
  
 //Bucket en donde en la posicion letra indica la ultima aparicion
-vector <int> badCharHeuristic( string str)
+vector <int> BM::badCharHeuristic( string str)
 {
-    vector <int> badchar(str.length());
+    vector <int> badchar(ASCII);
     int i;
     int size = str.length();
  
@@ -30,7 +49,7 @@ vector <int> badCharHeuristic( string str)
  
 /* A pattern searching function that uses Bad Character Heuristic of
    Boyer Moore Algorithm */
-vector <int> search( string txt,  string pat)
+vector <int> BM::search( string pat)
 {   vector<int> occurrence;
     int m = pat.length();
     int n = txt.length();
@@ -50,7 +69,6 @@ vector <int> search( string txt,  string pat)
         
         if (j < 0)
         {   occurrence.push_back(s);
-            printf("\n pattern occurs at shift = %d", s);
  
             if(s+m< n) s+= m-badchar[txt[s+m]];
             else s+=1;
@@ -65,14 +83,3 @@ vector <int> search( string txt,  string pat)
     return occurrence;
 }
  
-/* Driver program to test above funtion */
-int main()
-{
-    char txt[] = "ABAAABCD";
-    char pat[] = "ABC";
-    search(txt, pat);
-    string str ("ABABDABACDABABCABAB");
-    string patron ("ABABCABAB");
-    search(str,patron);
-    return 0;
-}

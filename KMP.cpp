@@ -7,9 +7,25 @@
  
 
 using namespace std;
-vector <int> PS(string pat);
+
+class KMPs {
+
+protected :
+string txt;
+
+public:
+  KMPs( string text);
+  vector<int> KMPSearch(string pattern);
+  vector <int> PS(string pat);
+
+
+};
+KMPs::KMPs(string str){
+  txt=str;
+}
+
  
-vector <int> KMPSearch(string pat, string txt)
+vector <int> KMPs::KMPSearch(string pat)
 {
     int M = pat.length();
     int N = txt.length();
@@ -32,7 +48,6 @@ vector <int> KMPSearch(string pat, string txt)
       if (j == M)
       {
         ocurrence.push_back(i-j);
-        printf("Found pattern at index %d \n", i-j);
         j = lps[j-1];
       }
  
@@ -47,7 +62,7 @@ vector <int> KMPSearch(string pat, string txt)
     return ocurrence;
 }
  
-vector <int> PS(string pat)
+vector <int> KMPs::PS(string pat)
 {
     int M = pat.length();
     int len = 0; 
@@ -79,15 +94,7 @@ vector <int> PS(string pat)
          }
        }
     }
-    for ( int i =0 ; i<lps.size();i++) cout<<lps[i]<<'\t';
+    
     return lps;
 }
  
-
-int main()
-{
-   string txt ("ABABDABACDABABCABAB");
-   string pat ("ABABCABAB");
-   KMPSearch(pat, txt);
-   return 0;
-}

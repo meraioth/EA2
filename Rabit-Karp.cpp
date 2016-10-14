@@ -1,18 +1,35 @@
-/* Following program is a C implementation of Rabin Karp
-Algorithm given in the CLRS book */
+
 #include<stdio.h>
 #include <string>
 #include <iostream>
 #include <vector>
  
-// d is the number of characters in input alphabet
+
 #define ASCII 256
  using namespace std;
+ int q = 101;
 /* pat -> pattern
     txt -> text
     q -> A prime number
 */
-vector<int> search(string pat, string txt, int q)
+
+class RK {
+
+protected :
+string txt;
+
+public:
+  RK( string text);
+  vector<int> search(string pattern);
+
+
+};
+RK::RK(string str){
+    txt=str;
+}
+
+
+vector<int> RK::search(string pat)
 {   
     vector <int> ocurrence;
     int M = pat.length();
@@ -53,7 +70,6 @@ vector<int> search(string pat, string txt, int q)
             // if p == t and pat[0...M-1] = txt[i, i+1, ...i+M-1]
             if (j == M)
                 ocurrence.push_back(i);
-                printf("Pattern found at index %d \n", i);
         }
  
         // Calculate hash value for next window of text: Remove
@@ -71,15 +87,3 @@ vector<int> search(string pat, string txt, int q)
     return ocurrence;
 }
  
-/* Driver program to test above function */
-int main()
-{
-    char txt[] = "GEEKS FOR GEEKS";
-    char pat[] = "GEEK";
-    int q = 101; // A prime number
-   // search(pat, txt, q);
-    string str ("ABABDABACDABABCABAB");
-    string patron ("ABABCABAB");
-    search(patron,str,q);
-    return 0;
-}
