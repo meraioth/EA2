@@ -1,7 +1,7 @@
 #include "fuerzabruta.cpp"
 #include "KMP.cpp"
 #include "Rabit-Karp.cpp"
-#include "rabin-karp.cpp"
+#include "Rabit-Karp2.cpp"
 #include "Boyer-Moore.cpp"
 #include <iostream>
 #include <vector>
@@ -64,7 +64,7 @@ void randomstr(const char *filename){
 	//algoritmo 4
 	RK rabit(test);
 	//algoritmo 4*
-	RK2 rk(test);
+	//RK2 rk(test);
 	
 	clock_t comienzo;
 	double fin;
@@ -89,17 +89,17 @@ void randomstr(const char *filename){
 	v3=km.KMPSearch(patron);
 	fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
 	cout <<"Tiempo de KMP :"<< fin<<endl;
-	v2 = rabit.search(patron);
+	v3 = rabit.search(patron);
 
 	comienzo=clock();
 	v4=rabit.search(patron);
 	fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
 	cout <<"Tiempo de Rabit-Karp :"<< fin<<endl;
 	
-	comienzo=clock();
-	v4_2=rk.search(patron);
-	fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
-	cout <<"Tiempo de Rabit-Karp 2:"<< fin<<endl;
+	// comienzo=clock();
+	// v4_2=rk.search(patron);
+	// fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
+	// cout <<"Tiempo de Rabit-Karp 2:"<< fin<<endl;
 
 
 }
@@ -112,13 +112,13 @@ int en_texto(const char *filename){
 	int size=test.size();
 	//cout<< int(0.00001*size)<<endl;
 	//tamaño del patron a buscar
-	int pattern_size=0.00001*size;
+	int pattern_size=30;
 	// posicion del patron a buscar
 	int patter_pos = rand()%(size - pattern_size);
 	string patron(test.substr(patter_pos,pattern_size));
 	//string patron("GLLLLLLLV");
 
-	//cout<<patron<<endl;
+	cout<<patron<<endl;
 	//algoritmo 1
 	BF beff(test);
 	//algoritmo 2
@@ -153,17 +153,20 @@ int en_texto(const char *filename){
 	v3=km.KMPSearch(patron);
 	fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
 	cout <<"Tiempo de KMP :"<< fin<<endl;
-	v2 = rabit.search(patron);
+	v3 = rabit.search(patron);
 
 	comienzo=clock();
 	v4=rabit.search(patron);
 	fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
 	cout <<"Tiempo de Rabit-Karp :"<< fin<<endl;
 	
-	comienzo=clock();
-	v4_2=rk.search(patron);
-	fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
-	cout <<"Tiempo de Rabit-Karp 2:"<< fin<<endl;
+	// comienzo=clock();
+	// v4_2=rk.search(patron);
+	// fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
+	// cout <<"Tiempo de Rabit-Karp 2:"<< fin<<endl;
+	for ( int i = 0 ; i<v1.size();i++) {
+		cout<< v1[i]<<" "<<v2[i]<<" "<<v3[i]<<" "<<v4[i]<<endl;
+	}
 	
  return 0;
 }
@@ -176,42 +179,7 @@ srand (time(NULL));
 randomstr("dna.200MB");
 
 en_texto("dna.200MB");
-//rand() % 10 + 1;
 
-
-
-// for (int i = 0; i < v.size(); ++i)
-// {
-// 	cout<<v[i]<<'\t';
-
-// 	}
-// cout<<endl;
-
-// KMPs km(text);
-// vector<int> v1=km.KMPSearch(pattern);
-
-// for (int i = 0; i < v1.size(); ++i)
-// {
-// 	cout<<v1[i]<<'\t';
-
-// 	}
-// cout<<endl;
-
-// // RK rabit(text);
-// // vector<int> v2 = rabit.search(pattern);
-// // for (int i = 0; i < v2.size(); ++i)
-// // {
-// // 	cout<<v2[i]<<'\t';
-
-// // 	}
-// cout<<endl;
-// 
-// for (int i = 0; i < v3.size(); ++i)
-// {
-// 	cout<<v3[i]<<'\t';
-
-// 	}
-// cout<<endl;
 
 	return 0;
 }

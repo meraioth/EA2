@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <string>
 #include <iostream>
@@ -7,14 +6,15 @@
 
 #define ASCII 256
 using namespace std;
+static int prime = 101;
 
-class RK {
+class RK2 {
 
 protected:
     string text;
 
 private:
-    int prime = 101;
+    
 
     long recalculateHash(string str,int oldIndex, int newIndex,long oldHash, int patternLen) {
         long newHash = oldHash - str[oldIndex];
@@ -46,7 +46,7 @@ private:
     }
 
 public:
-    RK(string str){
+    RK2(string str){
         text=str;
     }
     vector<int> search(string pattern){
@@ -69,12 +69,4 @@ public:
 
 };
 
-int main(){
-    string test = "buenas tardes, mi nombre es matías, tengo 19";
-    string patron = "m";
-    RK rabit(test);
-    vector<int> v2 = rabit.search(patron);
-    for(int i = 0 ; i < v2.size() ; i++){
-        cout << v2[i] << endl;
-    }
-}
+
