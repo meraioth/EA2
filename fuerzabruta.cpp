@@ -10,7 +10,7 @@ string text;
 
 public:
 	BF( string text);
-	vector<int> findpattern(string pattern);
+	int findpattern(string pattern);
 
 
 };
@@ -22,10 +22,10 @@ BF::BF( string text){
 
 	}
 
- vector<int> BF::findpattern(string pattern){
+ int BF::findpattern(string pattern){
 		std::vector<int> ocurrencias;
 
-		if(text.length()==0 || pattern.length()==0) return ocurrencias;
+		if(text.length()==0 || pattern.length()==0) return 0;
 		
 		int text_size=text.length();
 		int pattern_size = pattern.length();
@@ -37,12 +37,12 @@ BF::BF( string text){
 	    	for (int j = 0; j < pattern_size; j++)
 	    	{
 	    		if(text[i+j] != pattern[j]) break;
-	    		else if(j==pattern_size-1) ocurrencias.push_back(i);
+	    		else if(j==pattern_size-1) return i;
 	    	}
 
 	    }
 
-	    return ocurrencias;
+	    return 0;
 
 
 	}

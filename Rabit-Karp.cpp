@@ -20,7 +20,7 @@ string txt;
 
 public:
   RK( string text);
-  vector<int> search(string pattern);
+  int search(string pattern);
 
 
 };
@@ -29,7 +29,7 @@ RK::RK(string str){
 }
 
 
-vector<int> RK::search(string pat)
+int RK::search(string pat)
 {   
     vector <int> ocurrence;
     int M = pat.length();
@@ -69,7 +69,7 @@ vector<int> RK::search(string pat)
  
             // if p == t and pat[0...M-1] = txt[i, i+1, ...i+M-1]
             if (j == M)
-                ocurrence.push_back(i);
+                return i;
         }
  
         // Calculate hash value for next window of text: Remove
@@ -84,6 +84,6 @@ vector<int> RK::search(string pat)
             t = (t + q);
         }
     }
-    return ocurrence;
+    return 0;
 }
  

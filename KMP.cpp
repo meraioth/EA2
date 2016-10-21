@@ -12,20 +12,27 @@ class KMPs {
 
 protected :
 string txt;
+vector <int> prepro;
 
 public:
-  KMPs( string text);
-  vector<int> KMPSearch(string pattern);
+  KMPs( string text, string pattern);
+  int KMPSearch(string pattern);
   vector <int> PS(string pat);
 
 
+
 };
-KMPs::KMPs(string str){
+KMPs::KMPs(string str,string pattern){
   txt=str;
+  prepro = PS(pattern);
 }
 
+
+
+
+
  
-vector <int> KMPs::KMPSearch(string pat)
+int KMPs::KMPSearch(string pat)
 {
     int M = pat.length();
     int N = txt.length();
@@ -34,7 +41,7 @@ vector <int> KMPs::KMPSearch(string pat)
     
     int j  = 0;  
  
-    vector <int> lps = PS(pat);
+    vector <int> lps = prepro;
  
     int i = 0; 
     while (i < N)
@@ -47,7 +54,7 @@ vector <int> KMPs::KMPSearch(string pat)
  
       if (j == M)
       {
-        ocurrence.push_back(i-j);
+        return i-M;
         j = lps[j-1];
       }
  
@@ -59,7 +66,7 @@ vector <int> KMPs::KMPSearch(string pat)
          i = i+1;
       }
     }
-    return ocurrence;
+    return 0;
 }
  
 vector <int> KMPs::PS(string pat)

@@ -58,9 +58,9 @@ void randomstr(const char *filename){
 	//algoritmo 1
 	BF beff(test);
 	//algoritmo 2
-	BM boyer(test);
+	BM boyer(test,patron);
 	//algoritmo 3
-	KMPs km(test);
+	KMPs km(test,patron);
 	//algoritmo 4
 	RK rabit(test);
 	//algoritmo 4*
@@ -71,30 +71,30 @@ void randomstr(const char *filename){
 
 
 	
-	vector<int> v1,v2,v3,v4,v4_2 ;
+	int v1,v2,v3,v4,v4_2 ;
 
 	comienzo=clock();
 	v1=beff.findpattern(patron);
 	fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
-	cout <<"Tiempo de fuerza bruta :"<< fin<<endl;
+	cout <<"Tiempo de fuerza bruta :"<< fin<<" indice encontrado :"<<v1<<endl;
 
 
 	comienzo=clock();
 	v2=boyer.search(patron);
 	fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
-	cout <<"Tiempo de boyer moore :"<< fin<<endl;
+	cout <<"Tiempo de boyer moore :"<< fin<<" indice encontrado :"<<v2<<endl;
 
 
 	comienzo=clock();
 	v3=km.KMPSearch(patron);
 	fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
-	cout <<"Tiempo de KMP :"<< fin<<endl;
+	cout <<"Tiempo de KMP :"<< fin<<" indice encontrado :"<<v3<<endl;
 	v3 = rabit.search(patron);
 
 	comienzo=clock();
 	v4=rabit.search(patron);
 	fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
-	cout <<"Tiempo de Rabit-Karp :"<< fin<<endl;
+	cout <<"Tiempo de Rabit-Karp :"<< fin<<" indice encontrado :"<<v4<<endl;
 	
 	// comienzo=clock();
 	// v4_2=rk.search(patron);
@@ -122,9 +122,9 @@ int en_texto(const char *filename){
 	//algoritmo 1
 	BF beff(test);
 	//algoritmo 2
-	BM boyer(test);
+	BM boyer(test,patron);
 	//algoritmo 3
-	KMPs km(test);
+	KMPs km(test,patron);
 	//algoritmo 4
 	RK rabit(test);
 	//algoritmo 4*
@@ -135,38 +135,38 @@ int en_texto(const char *filename){
 
 
 	
-	vector<int> v1,v2,v3,v4,v4_2 ;
+	int v1,v2,v3,v4,v4_2 ;
 
-	comienzo=clock();
+		comienzo=clock();
 	v1=beff.findpattern(patron);
 	fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
-	cout <<"Tiempo de fuerza bruta :"<< fin<<endl;
+	cout <<"Tiempo de fuerza bruta :"<< fin<<" indice encontrado :"<<v1<<endl;
 
 
 	comienzo=clock();
 	v2=boyer.search(patron);
 	fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
-	cout <<"Tiempo de boyer moore :"<< fin<<endl;
+	cout <<"Tiempo de boyer moore :"<< fin<<" indice encontrado :"<<v2<<endl;
 
 
 	comienzo=clock();
 	v3=km.KMPSearch(patron);
 	fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
-	cout <<"Tiempo de KMP :"<< fin<<endl;
+	cout <<"Tiempo de KMP :"<< fin<<" indice encontrado :"<<v3<<endl;
 	v3 = rabit.search(patron);
 
 	comienzo=clock();
 	v4=rabit.search(patron);
 	fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
-	cout <<"Tiempo de Rabit-Karp :"<< fin<<endl;
+	cout <<"Tiempo de Rabit-Karp :"<< fin<<" indice encontrado :"<<v4<<endl;
 	
 	// comienzo=clock();
 	// v4_2=rk.search(patron);
 	// fin=(clock()-comienzo)/(double)CLOCKS_PER_SEC;
 	// cout <<"Tiempo de Rabit-Karp 2:"<< fin<<endl;
-	for ( int i = 0 ; i<v1.size();i++) {
-		cout<< v1[i]<<" "<<v2[i]<<" "<<v3[i]<<" "<<v4[i]<<endl;
-	}
+	// for ( int i = 0 ; i<v1.size();i++) {
+	// 	cout<< v1[i]<<" "<<v2[i]<<" "<<v3[i]<<" "<<v4[i]<<endl;
+	// }
 	
  return 0;
 }

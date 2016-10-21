@@ -16,20 +16,20 @@ class BM {
 
 protected :
 string txt;
+vector <int> bc;
 
 public:
-  BM( string text);
+  BM( string text, string str);
   vector <int> badCharHeuristic( string str);
-  vector<int> search(string pattern);
+  int search(string pattern);
 
 
 };
 
-BM::BM(string text){
+BM::BM(string text, string str){
     txt=text;
+    bc = badCharHeuristic(str);
 }
- 
-//Bucket en donde en la posicion letra indica la ultima aparicion
 vector <int> BM::badCharHeuristic( string str)
 {
     vector <int> badchar(ASCII);
@@ -49,12 +49,12 @@ vector <int> BM::badCharHeuristic( string str)
  
 /* A pattern searching function that uses Bad Character Heuristic of
    Boyer Moore Algorithm */
-vector <int> BM::search( string pat)
+int BM::search( string pat)
 {   vector<int> occurrence;
     int m = pat.length();
     int n = txt.length();
  
-    vector<int> badchar =badCharHeuristic(pat);
+    vector<int> badchar =bc;
  
  
     int s = 0;
@@ -68,7 +68,7 @@ vector <int> BM::search( string pat)
  
         
         if (j < 0)
-        {   occurrence.push_back(s);
+        {   return s;
  
             if(s+m< n) s+= m-badchar[txt[s+m]];
             else s+=1;
@@ -80,6 +80,5 @@ vector <int> BM::search( string pat)
     
             s += max(1, j - badchar[txt[s+j]]);
     }
-    return occurrence;
+    return 0;
 }
- 
